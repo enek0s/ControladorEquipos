@@ -1,0 +1,50 @@
+﻿@model ControladorEquipos.Models.Puertos
+
+@{
+    ViewData["Title"] = "Editar Puerto";
+}
+
+<h1 class="mb-4 text-primary">Editar Puerto</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Puerto" class="control-label"></label>
+                <input asp-for="Puerto" class="form-control" />
+                <span asp-validation-for="Puerto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NivelRiesgoId" class="control-label">Nivel de Riesgo</label>
+                <select asp-for="NivelRiesgoId" class="form-control" asp-items="@(ViewBag.NivelRiesgoId as SelectList)">
+                    <option value="">-- Selecciona un nivel --</option>
+                </select>
+                <span asp-validation-for="NivelRiesgoId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">
+                    <i class="bi bi-arrow-left me-1"></i> Volver a la lista
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

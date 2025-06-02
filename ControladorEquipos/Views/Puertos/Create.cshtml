@@ -1,0 +1,52 @@
+﻿@model ControladorEquipos.Models.Puertos
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Puertos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Puerto" class="control-label"></label>
+                <input asp-for="Puerto" class="form-control" />
+                <span asp-validation-for="Puerto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NivelRiesgoId" class="control-label"></label>
+                <select asp-for="NivelRiesgoId" class="form-control" asp-items="ViewBag.NivelRiesgoId">
+                    <option value="">-- Seleccione Nivel de Riesgo --</option>
+                </select>
+                <span asp-validation-for="NivelRiesgoId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

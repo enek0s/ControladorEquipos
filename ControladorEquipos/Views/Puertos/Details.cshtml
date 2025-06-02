@@ -1,0 +1,35 @@
+﻿@model ControladorEquipos.Models.Puertos
+
+@{
+    ViewData["Title"] = "Detalles del Puerto";
+}
+
+<h1 class="mb-4 text-primary">Detalles del Puerto</h1>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-info text-white">
+        <h5 class="mb-0">Información del Puerto</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Puerto)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Puerto)</dd>
+
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Descripcion)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Descripcion)</dd>
+
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.NivelRiesgo)</dt>
+            <dd class="col-sm-9">@Model.NivelRiesgo?.Descripcion</dd>
+
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning me-2">
+        <i class="bi bi-pencil-square me-1"></i> Editar
+    </a>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-left me-1"></i> Volver a la lista
+    </a>
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ControladorEquipos.Models.HistorialEscaneos>
+
+@{
+    ViewData["Title"] = "Historial de Escaneos";
+}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 rounded-3 shadow-sm">
+    <div class="container-fluid">
+        <form class="d-flex w-100" method="get" asp-action="Index" asp-controller="HistorialEscaneos">
+            <select class="form-select me-2" name="filterBy" style="max-width: 180px;">
+                <option value="hostname" selected>Buscar por Hostname</option>
+                <option value="ip">Buscar por IP</option>
+                <option value="puerto">Buscar por Puerto</option>
+            </select>
+
+            <input class="form-control me-2" type="search" name="query" placeholder="Escribe para buscar..." aria-label="Buscar" />
+
+            <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i> Buscar</button>
+        </form>
+    </div>
+</nav>
+
+<!-- Tabla para pantallas md+ -->
+<div class="table-responsive d-none d-md-block">
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Hostname</th>
+                <th>IP</th>
+                <th>MAC</th>
+                <th>Sistema Operativo</th>
+                <th>Puertos Abiertos</th>
+                <th>Fecha Escaneo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Hostname</td>
+                    <td>@item.IP</td>
+                    <td>@item.MAC</td>
+                    <td>@item.OS</td>
+                    <td>@item.PuertosAbiertos</td>
+                    <td>@item.FechaEscaneo.ToString("g")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Cards para pantallas pequeñas -->
+<div class="d-block d-md-none">
+    @foreach (var item in Model)
+    {
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">@item.Hostname</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@item.IP</h6>
+                <p class="card-text"><strong>MAC:</strong> @item.MAC</p>
+                <p class="card-text"><strong>Sistema Operativo:</strong> @item.OS</p>
+                <p class="card-text"><strong>Puertos Abiertos:</strong> @item.PuertosAbiertos</p>
+                <p class="card-text"><small class="text-muted">Escaneado: @item.FechaEscaneo.ToString("g")</small></p>
+            </div>
+        </div>
+    }
+</div>

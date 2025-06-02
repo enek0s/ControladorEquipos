@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ControladorEquipos.Models.Equipos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["ScriptOutput"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <pre>@TempData["ScriptOutput"]</pre>
+    </div>
+}
+
+@if (TempData["ScriptError"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <pre>@TempData["ScriptError"]</pre>
+    </div>
+}
+
+<div style="margin-bottom: 20px;">
+    <form asp-action="VerificarYEjecutar" method="post">
+        <button type="submit" class="btn btn-danger">Verificar y Ejecutar Script</button>
+    </form>
+</div>
+
+<div class="col-md-6 mb-3">
+    <div class="card shadow-sm border-primary d-flex flex-row align-items-center" style="min-height: 150px;">
+        <div class="card-body">
+            <h5 class="card-title">📂 Historial de Escaneos</h5>
+            <p class="card-text">Consulta el historial completo de escaneos realizados.</p>
+            <a asp-controller="HistorialEscaneos" asp-action="Index" class="btn btn-primary">
+                Ver historial
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- TABLA para pantallas medianas y arriba -->
+<div class="table-responsive d-none d-md-block">
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.Hostname)</th>
+                <th>@Html.DisplayNameFor(m => m.IP)</th>
+                <th>@Html.DisplayNameFor(m => m.MAC)</th>
+                <th>@Html.DisplayNameFor(m => m.OS)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => item.Hostname)</td>
+                    <td>@Html.DisplayFor(m => item.IP)</td>
+                    <td>@Html.DisplayFor(m => item.MAC)</td>
+                    <td>@Html.DisplayFor(m => item.OS)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- CARDS para pantallas pequeñas -->
+<div class="d-block d-md-none">
+    @foreach (var item in Model)
+    {
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">@item.Hostname</h5>
+                <p class="card-text"><strong>IP:</strong> @item.IP</p>
+                <p class="card-text"><strong>MAC:</strong> @item.MAC</p>
+                <p class="card-text"><strong>OS:</strong> @item.OS</p>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm me-1 mb-1">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm me-1 mb-1">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm mb-1">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,52 @@
+﻿@model ControladorEquipos.Models.Equipos
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Equipos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Hostname" class="control-label"></label>
+                <input asp-for="Hostname" class="form-control" />
+                <span asp-validation-for="Hostname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IP" class="control-label"></label>
+                <input asp-for="IP" class="form-control" />
+                <span asp-validation-for="IP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MAC" class="control-label"></label>
+                <input asp-for="MAC" class="form-control" />
+                <span asp-validation-for="MAC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OS" class="control-label"></label>
+                <input asp-for="OS" class="form-control" />
+                <span asp-validation-for="OS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />  |
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>Back to List
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+   
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

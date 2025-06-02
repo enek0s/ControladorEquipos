@@ -1,0 +1,54 @@
+﻿@model ControladorEquipos.Models.HistorialEscaneos
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>HistorialEscaneo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Hostname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hostname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IP)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MAC)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MAC)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OS)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OS)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PuertosAbiertos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PuertosAbiertos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaEscaneo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaEscaneo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
